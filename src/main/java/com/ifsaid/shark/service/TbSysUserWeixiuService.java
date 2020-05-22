@@ -5,15 +5,21 @@ import com.github.pagehelper.PageInfo;
 import com.ifsaid.shark.common.service.BaseService;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 import com.ifsaid.shark.util.QueryParameter;
-import com.ifsaid.shark.vo.TbSysUserWeixiuVo;
 
-public interface TbSysUserWeixiuService extends BaseService<TbSysUserWeixiu, Integer> {
+public interface TbSysUserWeixiuService  {
+
+
+    /*PageInfo<TbSysUserWeixiuVo> findAllUserWeixiuPage(QueryParameter parameter);*/
+
+    int saveOrder(TbSysUserWeixiu schoolRepair);
+
+    public PageInfo<TbSysUserWeixiu> selectOrderLike(String repairUserName,Integer page, Integer pageSize,String repairType);
 
     /**
-     * 分页擦好像 获取用户详细信息
-     *
-     * @param parameter
-     * @return PageInfo<TbSysUserWeixiuVo>
+     * 查询所有维修单
+     * @param page
+     * @param pageSize
+     * @return
      */
-    PageInfo<TbSysUserWeixiuVo> findAllUserWeixiuPage(QueryParameter parameter);
+    public PageInfo<TbSysUserWeixiu> showOrders(Integer page, Integer pageSize);
 }
