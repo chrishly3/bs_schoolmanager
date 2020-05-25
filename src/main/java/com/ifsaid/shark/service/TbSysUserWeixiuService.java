@@ -2,9 +2,7 @@ package com.ifsaid.shark.service;
 
 
 import com.github.pagehelper.PageInfo;
-import com.ifsaid.shark.common.service.BaseService;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
-import com.ifsaid.shark.util.QueryParameter;
 
 public interface TbSysUserWeixiuService  {
 
@@ -22,4 +20,6 @@ public interface TbSysUserWeixiuService  {
      * @return
      */
     public PageInfo<TbSysUserWeixiu> showOrders(Integer page, Integer pageSize);
+
+    public Integer removeById(String id);
 }
