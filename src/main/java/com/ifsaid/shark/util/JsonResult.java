@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * All rights Reserved, Designed By www.ifsaid.com
@@ -38,6 +39,11 @@ public class JsonResult<T> implements Serializable {
     private String message;
 
     /**
+     * 是否成功
+     */
+    private Boolean success;
+
+    /**
      * 返回内容
      */
     private T data;
@@ -61,6 +67,14 @@ public class JsonResult<T> implements Serializable {
         result.message = message;
         result.data = data;
         return result;
+    }
+
+    public static JsonResult error(){
+        JsonResult r = new JsonResult();
+        r.setSuccess(false);
+        r.setStatus(ResultCode.ERROR);
+        r.setMessage("操作失败");
+        return r;
     }
 
     /**
