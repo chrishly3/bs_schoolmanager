@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 import com.ifsaid.shark.mapper.TbSysUserWeixiuMapper;
 import com.ifsaid.shark.service.TbSysUserWeixiuService;
-import com.ifsaid.shark.util.QueryParameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +36,7 @@ public class TbSysUserWeixiuServiceImpl implements TbSysUserWeixiuService {
         //在帮助类中传入分页参数
         PageHelper.startPage(page, pageSize);
         List<TbSysUserWeixiu> list =orderMapper.selectOrderLike("%"+repairUserName+"%","%"+repairType+"%");
-        System.out.println("list  :  "+list);
+        //System.out.println("list  :  "+list);
         PageInfo<TbSysUserWeixiu> pageList = new PageInfo<TbSysUserWeixiu>(list);
         return pageList;
     }
@@ -46,26 +45,18 @@ public class TbSysUserWeixiuServiceImpl implements TbSysUserWeixiuService {
     public PageInfo<TbSysUserWeixiu> showOrders(Integer page, Integer pageSize) {
         page = page == null ? 1 : page;
         pageSize = pageSize == null ? 10: pageSize;
-        System.out.println(page + "--"+pageSize);
+        //System.out.println(page + "--"+pageSize);
         //在帮助类中传入分页参数
         PageHelper.startPage(page, pageSize);
         List<TbSysUserWeixiu> list = orderMapper.listOrder();
-        System.out.println("list  :  "+list);
+        //System.out.println("list  :  "+list);
         PageInfo<TbSysUserWeixiu> pageList = new PageInfo<TbSysUserWeixiu>(list);
         return pageList;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public Integer removeById(String id) {
+        return orderMapper.removeById(id);
+    }
 
 }
