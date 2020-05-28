@@ -30,6 +30,8 @@
         <mapper-spring-boot.version>2.1.5</mapper-spring-boot.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger2.bootstrap.version>1.9.6</swagger2.bootstrap.version>
+        <velocity.version>2.0</velocity.version>
+        <mybatis-plus.version>3.0.5</mybatis-plus.version>
     </properties>
 
     <dependencies>
@@ -192,6 +194,8 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
             <version>${swagger2.bootstrap.version}</version>
         </dependency>
+
+
 
     </dependencies>
 
