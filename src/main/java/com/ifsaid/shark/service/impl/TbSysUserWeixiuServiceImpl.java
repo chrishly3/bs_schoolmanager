@@ -2,6 +2,7 @@ package com.ifsaid.shark.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ifsaid.shark.entity.TbSysUserEvaluate;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 import com.ifsaid.shark.mapper.TbSysUserWeixiuMapper;
 import com.ifsaid.shark.service.TbSysUserWeixiuService;
@@ -57,6 +58,24 @@ public class TbSysUserWeixiuServiceImpl implements TbSysUserWeixiuService {
     @Override
     public Integer removeById(String id) {
         return orderMapper.removeById(id);
+    }
+
+    @Override
+    public PageInfo<TbSysUserWeixiu> getOrders(String loginUserName, Integer page, Integer pageSize) {
+        page = page == null ? 1 : page;
+        pageSize = pageSize == null ? 10: pageSize;
+        System.out.println(page + "--"+pageSize);
+        //在帮助类中传入分页参数
+        PageHelper.startPage(page, pageSize);
+        List<TbSysUserWeixiu> list =orderMapper.getOrders(loginUserName);
+        //System.out.println("list  :  "+list);
+        PageInfo<TbSysUserWeixiu> pageList = new PageInfo<TbSysUserWeixiu>(list);
+        return pageList;
+    }
+
+    @Override
+    public Integer addEvalatedata(TbSysUserEvaluate tbSysUserEvaluate) {
+        return orderMapper.addEvalatedata(tbSysUserEvaluate);
     }
 
 }
