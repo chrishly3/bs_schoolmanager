@@ -2,6 +2,7 @@ package com.ifsaid.shark.service;
 
 
 import com.github.pagehelper.PageInfo;
+import com.ifsaid.shark.entity.TbSysUserEvaluate;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 
 public interface TbSysUserWeixiuService  {
@@ -22,4 +23,9 @@ public interface TbSysUserWeixiuService  {
     public PageInfo<TbSysUserWeixiu> showOrders(Integer page, Integer pageSize);
 
     public Integer removeById(String id);
+
+    PageInfo<TbSysUserWeixiu> getOrders(String loginUserName,Integer page, Integer pageSize);
+
+
+    Integer addEvalatedata(TbSysUserEvaluate tbSysUserEvaluate);
 }
