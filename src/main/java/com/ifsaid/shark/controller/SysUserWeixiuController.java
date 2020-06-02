@@ -4,6 +4,7 @@ package com.ifsaid.shark.controller;
 import com.github.pagehelper.PageInfo;
 
 import com.ifsaid.shark.entity.QueryOrder;
+import com.ifsaid.shark.entity.TbSysUserEvaluate;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 import com.ifsaid.shark.service.TbSysUserWeixiuService;
 import com.ifsaid.shark.util.JsonResult;
@@ -82,6 +83,15 @@ public class SysUserWeixiuController {
         return JsonResult.success(pageList);
     }
 
+    @PostMapping("moreCondtionPageList2/{page}/{pageSize}/{loginUserName}")
+    public JsonResult getOrders(@PathVariable Integer page, @PathVariable Integer pageSize,
+                                @PathVariable String loginUserName) {
+
+        PageInfo<TbSysUserWeixiu> pageList=tbSysUserWeixiuService.getOrders( loginUserName , page, pageSize);
+        //System.out.println(pageList);
+        return JsonResult.success(pageList);
+    }
+
     @DeleteMapping("{id}")
     public JsonResult removeById(@PathVariable String id) {
         Integer delete = tbSysUserWeixiuService.removeById(id);
@@ -91,6 +101,23 @@ public class SysUserWeixiuController {
         } else {
             return JsonResult.error();
         }
+
+        /**
+         * 添加维修单的方法
+         * @param schoolRepair
+         * @return 是否添加成功
+         */
+        /*@RequestMapping(value = "/addOrder",method = RequestMethod.POST)
+        public JsonResult addSchoolRepair(@RequestBody TbSysUserWeixiu tbSysUserWeixiu) {
+            int save = tbSysUserWeixiuService.saveOrder(tbSysUserWeixiu);
+            if(save==1) {
+                return JsonResult.success();
+            } else {
+                return JsonResult.error();
+            }
+        }*/
+
+
 
 //    /**
 //     * 查询所有报修单（测试）
@@ -123,5 +150,20 @@ public class SysUserWeixiuController {
 
 
 
+    }
+    /**
+     * 添加维修单的方法
+     * @param
+     * @return 是否添加成功
+     */
+//        @RequestMapping(value = "/addEvalatedata",method = RequestMethod.POST)
+    @PostMapping("/addEvaluatedata")
+    public JsonResult addSchoolRepair(@RequestBody TbSysUserEvaluate tbSysUserEvaluate) {
+        int save = tbSysUserWeixiuService.addEvalatedata(tbSysUserEvaluate);
+        if(save==1) {
+            return JsonResult.success();
+        } else {
+            return JsonResult.error();
+        }
     }
 }
