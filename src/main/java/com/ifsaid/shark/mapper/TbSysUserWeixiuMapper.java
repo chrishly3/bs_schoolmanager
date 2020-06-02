@@ -1,5 +1,6 @@
 package com.ifsaid.shark.mapper;
 
+import com.ifsaid.shark.entity.TbSysUserEvaluate;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 import org.springframework.stereotype.Repository;
 import org.apache.ibatis.annotations.*;
@@ -36,6 +37,13 @@ public interface TbSysUserWeixiuMapper {
      */
     @Update("UPDATE tb_sys_user_weixiu SET def = 1 WHERE id=#{id}")
     Integer removeById(String id);
+
+    @Select("select * from tb_sys_user_weixiu "
+            + "where repair_userName = #{loginUserName}and def = 0")
+    List<TbSysUserWeixiu> getOrders(@Param("loginUserName") String loginUserName);
+
+    @Insert("insert into tb_sys_user_evaluate(createuser_id,repairuser_id,msgtext,creattime,def,repair_id,star) values(#{createuserId},#{repairuserId},#{msgText},#{creattime},#{def},#{repairId},#{star})")
+    Integer addEvalatedata(TbSysUserEvaluate tbSysUserEvaluate);
 
 
 }
