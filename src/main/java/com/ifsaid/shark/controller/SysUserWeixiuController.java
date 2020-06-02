@@ -152,7 +152,7 @@ public class SysUserWeixiuController {
 
     }
     /**
-     * 添加维修单的方法
+     * 添加评论的方法
      * @param
      * @return 是否添加成功
      */
