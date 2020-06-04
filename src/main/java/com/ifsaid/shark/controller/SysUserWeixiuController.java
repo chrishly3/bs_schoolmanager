@@ -4,6 +4,7 @@ package com.ifsaid.shark.controller;
 import com.github.pagehelper.PageInfo;
 
 import com.ifsaid.shark.entity.QueryOrder;
+import com.ifsaid.shark.entity.TbComplete;
 import com.ifsaid.shark.entity.TbSysUserEvaluate;
 import com.ifsaid.shark.entity.TbSysUserWeixiu;
 import com.ifsaid.shark.service.TbSysUserWeixiuService;
@@ -12,6 +13,9 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Api(tags = "[ 服务权限 ] 服务管理")
@@ -87,7 +91,7 @@ public class SysUserWeixiuController {
     public JsonResult getOrders(@PathVariable Integer page, @PathVariable Integer pageSize,
                                 @PathVariable String loginUserName) {
 
-        PageInfo<TbSysUserWeixiu> pageList=tbSysUserWeixiuService.getOrders( loginUserName , page, pageSize);
+        PageInfo<TbComplete> pageList=tbSysUserWeixiuService.getOrders( loginUserName , page, pageSize);
         //System.out.println(pageList);
         return JsonResult.success(pageList);
     }
@@ -157,13 +161,36 @@ public class SysUserWeixiuController {
      * @return 是否添加成功
      */
 //        @RequestMapping(value = "/addEvalatedata",method = RequestMethod.POST)
-    @PostMapping("/addEvaluatedata")
+       @PostMapping("/addEvaluatedata")
     public JsonResult addSchoolRepair(@RequestBody TbSysUserEvaluate tbSysUserEvaluate) {
+        Integer status=1;
+        tbSysUserEvaluate.setStatus(status);
         int save = tbSysUserWeixiuService.addEvalatedata(tbSysUserEvaluate);
         if(save==1) {
             return JsonResult.success();
         } else {
             return JsonResult.error();
         }
+    }
+
+    @GetMapping("/getEvaluate/"+"{id}")
+    public JsonResult getEvaluate(@PathVariable String id) {
+        List<TbComplete> list = tbSysUserWeixiuService.getEvaluate(id);
+
+            return JsonResult.success(list);
+    }
+
+    @GetMapping("/updateOrderStatus/"+"{id}"+"/"+"{status}")
+    public JsonResult updateOrderStatus(@PathVariable String id,@PathVariable String status) {
+        System.out.println(id);
+        System.out.println(status);
+        Integer result = tbSysUserWeixiuService.updateOrderStatus(id,status);
+        if(result==1){
+            return JsonResult.success();
+        }else{
+            return JsonResult.error();
+        }
+
+
     }
 }
