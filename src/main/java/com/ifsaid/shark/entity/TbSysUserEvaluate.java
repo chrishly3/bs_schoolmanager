@@ -11,6 +11,7 @@ public class TbSysUserEvaluate {
   private long def;
   private long repairId;
   private long star;
+  private long status;
 
 
   public long getId() {
@@ -79,8 +80,20 @@ public class TbSysUserEvaluate {
     return star;
   }
 
+
+
   public void setStar(long star) {
     this.star = star;
+  }
+
+  public long getStatus() {
+    return status;
+  }
+
+
+
+  public void setStatus(long status) {
+    this.status= status;
   }
 
 
